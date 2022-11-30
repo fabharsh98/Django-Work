@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Student
 from .forms import StudentForm
 
 # Create your views here.
 
 def home(request):
-    if request.user.is_anonymous:
-        return redirect('/student_list')
+    return redirect('/student_list')
 
 def stud_list(request):
     context = {

@@ -13,3 +13,7 @@ class StudentForm(forms.ModelForm):
             'subject': 'Subject',
             'roll': 'Roll No.'
         }
+
+        def __init__(self, *args, **kwargs):
+            super(StudentForm, self).__init__(*args, **kwargs)
+            self.fields['subject'].empty_label = "Select"
