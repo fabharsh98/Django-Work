@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile No.</td>
+            <td>Email ID</td>
+            <td>Subject</td>
+            <td>Roll No.</td>
+            <td>
+                <a href="{% url 'stud_reg' %}" class="btn btn-outline-success d-line">
+                    <i class="fas fa-plus"></i>Add Student</a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in student_list %}
+            <tr>
+                <td>{{student.name}}</td>
+                <td>{{student.phone}}</td>
+                <td>{{student.email}}</td>
+                <td>{{student.subject}}</td>
+                <td>{{student.roll}}</td>
+                <td>
+                    <a href="{% url 'stud_edit' student.id %}" class="btn text-secondary px-0">
+                       <i class="far fa-edit fa-lg"></i>
+                    </a>
+                    <form action="{% url 'stud_del' student.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
